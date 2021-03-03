@@ -1,0 +1,6 @@
+[submodule "contracts/_lib/Multiownable"]
+	path = contracts/_lib/Multiownable
+	url = https://github.com/bitclave/Multiownable
+[submodule "contracts/_lib/openzeppelin-contracts"]
+	path = contracts/_lib/openzeppelin-contracts
+	url = https://github.com/OpenZeppelin/openzeppelin-contracts
