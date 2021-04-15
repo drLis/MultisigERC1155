@@ -27,11 +27,11 @@ network:
         goerli:
             host: https://goerli.infura.io/v3/$WEB3_INFURA_PROJECT_ID
         kovan:
-            host: https://kovan.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+            host: https://kovan.infura.io/v3/d88243da67d24bd29963d6c6b2972a8b
         rinkeby:
             host: https://rinkeby.infura.io/v3/$WEB3_INFURA_PROJECT_ID
         ropsten:
-            host: https://ropsten.infura.io/v3/$WEB3_INFURA_PROJECT_ID
+            host: https://ropsten.infura.io/v3/ce74f2b07e0341bfb453dc7fd25576db
         classic:
             host: https://www.ethercluster.com/etc
         kotti:
