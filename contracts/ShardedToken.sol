@@ -4,7 +4,7 @@ import "./_lib/openzeppelin-contracts/contracts/access/Ownable.sol";
 
 contract ShardedToken is Ownable
 {
-	event TransferToken(address indexed from, address indexed to, uint256 id, uint256 value);
+	event TransferToken(address indexed from, address indexed to, uint256 series, uint256 value);
 	event Transfer(address indexed from, address indexed to, uint value);
 
 	mapping (uint => mapping (address => uint)) public balances;
@@ -14,34 +14,34 @@ contract ShardedToken is Ownable
 
 	}
 
-	function balanceOf(address owner, uint id) public returns (uint)
+	function balanceOf(address owner, uint series) public returns (uint)
 	{
-		return balances[id][owner];
+		return balances[series][owner];
 	}
 
-	function mint(address who, uint id, uint value) onlyOwner public
+	function mint(address who, uint series, uint value) onlyOwner public
 	{
-		balances[id][who] += value;
+		balances[series][who] += value;
 
-		emit TransferToken(address(0), who, id, value);
+		emit TransferToken(address(0), who, series, value);
 		emit Transfer(address(0), who, value);
 	}
 
-	function transfer(address to, uint[] calldata ids, uint[] calldata values) public
+	function transfer(address to, uint[] calldata series, uint[] calldata values) public
 	{
 		uint totalTransfered = 0;
 
-		for (uint i = 0; i < ids.length; i++)
+		for (uint i = 0; i < series.length; i++)
 		{
-			uint balance = balances[ids[i]][msg.sender];
+			uint balance = balances[series[i]][msg.sender];
 			if (balance >= values[i])
 			{
-				balances[ids[i]][msg.sender] -= values[i];
-				balances[ids[i]][to] += values[i];
+				balances[series[i]][msg.sender] -= values[i];
+				balances[series[i]][to] += values[i];
 
 				totalTransfered += values[i];
 
-				emit TransferToken(msg.sender, to, ids[i], values[i]);
+				emit TransferToken(msg.sender, to, series[i], values[i]);
 			}
 		}
 
